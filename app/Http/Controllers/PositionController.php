@@ -36,15 +36,15 @@ class PositionController extends Controller
                 ->orWhere('point_y', 'like', "%$search%")
                 ->orWhere('line_id', 'like', "%$search%")
                 ->get();
-                
 
-            if (!isEmpty($position)) {
+
+            if ($position->isNotEmpty()) {
                 return response()->json([
                     'position' => $position
                 ], 200);
             } else {
                 return response()->json([
-                    'message' => "position not found."
+                    'message' => "Position not found."
                 ], 500);
             }
         } catch (\Exception $e) {

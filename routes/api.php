@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\ExcurslonController;
 use App\Http\Controllers\LineController;
@@ -27,14 +28,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Driver
 Route::get('driver',[DriverController::class,'index']);
-Route::post('driversearch',[DriverController::class,'search']);
+Route::post('driver_search',[DriverController::class,'search']);
 Route::get('driver/{id}',[DriverController::class,'show']);
 Route::post('driver',[DriverController::class,'store']);
 Route::post('driver/{id}',[DriverController::class,'update']);
 Route::delete('driver/{id}',[DriverController::class,'destroy']);
 //Wagon
 Route::get('wagon',[WagonController::class,'index']);
-Route::post('wagonsearch',[WagonController::class,'search']);
+Route::post('wagon_search',[WagonController::class,'search']);
 Route::get('wagon/{id}',[WagonController::class,'show']);
 Route::post('wagon',[WagonController::class,'store']);
 Route::post('wagon/{id}',[WagonController::class,'update']);
@@ -67,3 +68,10 @@ Route::get('excursion/{id}',[ExcurslonController::class,'show']);
 Route::post('excursion',[ExcurslonController::class,'store']);
 Route::post('excursion/{id}',[ExcurslonController::class,'update']);
 Route::delete('excursion/{id}',[ExcurslonController::class,'destroy']);
+// Auth
+Route::post('user_search',[AuthController::class,'search']);
+Route::post('user/{id}',[AuthController::class,'update']);
+Route::delete('user/{id}',[AuthController::class,'destroy']);
+Route::post('/register', [AuthController::class,'register']);
+Route::post('/login', [AuthController::class,'login']);
+Route::post('/logout', [AuthController::class,'logout'])->middleware('auth:api');

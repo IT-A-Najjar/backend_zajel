@@ -35,9 +35,9 @@ class RegionController extends Controller
                 ->orWhere('point_x', 'like', "%$search%")
                 ->orWhere('point_y', 'like', "%$search%")
                 ->get();
-                
 
-            if (!isEmpty($regions)) {
+
+            if ($regions->isNotEmpty()) {
                 return response()->json([
                     'region' => $regions
                 ], 200);

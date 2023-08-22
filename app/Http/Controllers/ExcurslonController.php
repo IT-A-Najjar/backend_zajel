@@ -37,16 +37,16 @@ class ExcurslonController extends Controller
                 ->orWhere('bus_id', 'like', "%$search%")
                 ->orWhere('line_id', 'like', "%$search%")
                 ->get();
-                
 
-            if (!isEmpty($excursion)) {
+
+            if (!$excursion->isEmpty()) {
                 return response()->json([
-                    'excursion' => $excursion
+                    'excursions' => $excursion
                 ], 200);
             } else {
                 return response()->json([
-                    'message' => "excursion not found."
-                ], 500);
+                    'message' => "Excursions not found."
+                ], 404);
             }
         } catch (\Exception $e) {
             return response()->json([

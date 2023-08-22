@@ -36,14 +36,14 @@ class DriverController extends Controller
                 ->orWhere('age', 'like', "%$search%")
                 ->orWhere('experience', 'like', "%$search%")
                 ->get();
-            if (!$drivers) {
+            if (!$drivers->isEmpty()) {
                 return response()->json([
-                    'driver' => $drivers
+                    'drivers' => $drivers
                 ], 200);
             } else {
                 return response()->json([
-                    'message' => "driver not found."
-                ], 500);
+                    'message' => "Drivers not found."
+                ], 404);
             }
         } catch (\Exception $e) {
             return response()->json([

@@ -34,16 +34,16 @@ class LineController extends Controller
             $line = Lines::where('premise', 'like', "%$search%")
                 ->orWhere('stable', 'like', "%$search%")
                 ->get();
-                
 
-            if (!isEmpty($line)) {
+
+            if (!$line->isEmpty()) {
                 return response()->json([
-                    'line' => $line
+                    'lines' => $line
                 ], 200);
             } else {
                 return response()->json([
-                    'message' => "line not found."
-                ], 500);
+                    'message' => "Lines not found."
+                ], 404);
             }
         } catch (\Exception $e) {
             return response()->json([

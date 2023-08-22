@@ -36,9 +36,9 @@ class WagonController extends Controller
                 ->orWhere('car_number', 'like', "%$search%")
                 ->orWhere('number_chairs', 'like', "%$search%")
                 ->get();
-                
 
-            if (!isEmpty($wagons)) {
+
+            if ($wagons->isNotEmpty()) {
                 return response()->json([
                     'wagon' => $wagons
                 ], 200);
